@@ -9,7 +9,8 @@ public class IntegerDivisionApp {
         Result result = calculator.divide(DIVIDEND, DIVISOR);
 //        Formatter formatter = FormatterFactory.getInstance().get("classic");
 //        String output = formatter.format(result);
-        System.out.println("Результат " + result.result);
+        System.out.println("Результат " + result.quotient);
         System.out.println("Остаток " + result.reminder);
+        System.out.println("Шаги " + result.stepsList);
     }
 }
