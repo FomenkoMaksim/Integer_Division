@@ -1,5 +1,7 @@
 package com.foxminded.fomenkomaksim.integer_division2;
 
+import java.util.Formatter;
+
 public class IntegerDivisionApp {
     static final int DIVIDEND = 78945;
     static final int DIVISOR = 4;
