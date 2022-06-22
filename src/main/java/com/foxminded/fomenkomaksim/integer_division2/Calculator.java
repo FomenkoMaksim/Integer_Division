@@ -2,7 +2,7 @@ package com.foxminded.fomenkomaksim.integer_division2;
 
 public class Calculator {
     Result result = new Result();
-    Steps steps;
+    Step steps;
 
     private String answer = "";
     private String reminder = "";
@@ -17,22 +17,24 @@ public class Calculator {
             for (int i = 0; i <= digits.length - 1; i++) {
 
                 if (Integer.parseInt(tempDividend) / divisor == 0) {
+                    if (x + 1 >= digits.length) {
+                        break;
+                    }
                     tempDividend = tempDividend.concat(digits[x + 1]);
                     i--;
                     x++;
                 } else {
                     answer = answer.concat(String.valueOf(Integer.parseInt(tempDividend) / divisor));
                     reminder = String.valueOf(Integer.parseInt(tempDividend) % divisor);
-                    String closerNumber = String.valueOf(Integer.parseInt(tempDividend) - Integer.parseInt(reminder));
+                    String subtraction = String.valueOf(Integer.parseInt(tempDividend) - Integer.parseInt(reminder));
 
-                    steps = new Steps(tempDividend, closerNumber);
+                    steps = new Step(tempDividend, subtraction);
                     result.stepsList.add(steps);
                     tempDividend = String.valueOf(reminder);
                 }
             }
         }
 
-//        result.tempDividend = tempDividend;
         result.quotient = answer;
         result.reminder = String.valueOf(reminder);
         return result;
