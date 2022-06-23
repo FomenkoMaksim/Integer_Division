@@ -1,4 +1,4 @@
-package com.foxminded.fomenkomaksim.integer_division2;
+package com.foxminded.fomenkomaksim.integer.division;
 
 public class IntegerDivisionApp {
     static final int DIVIDEND = 78945;
@@ -8,7 +8,6 @@ public class IntegerDivisionApp {
         Calculator calculator = new Calculator();
         Result result = calculator.divide(DIVIDEND, DIVISOR);
 
-        FormatterFactory ff = new FormatterFactory();
-        System.out.print(ff.partOne(result));
+        System.out.print(ResultFormatter.partOne(result));
     }
 }
