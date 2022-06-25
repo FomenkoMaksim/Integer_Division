@@ -7,7 +7,8 @@ public class IntegerDivisionApp {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Result result = calculator.divide(DIVIDEND, DIVISOR);
+        ResultFormatter rf = new ResultFormatter();
 
-        System.out.print(ResultFormatter.partOne(result));
+        System.out.print(rf.format(result));
     }
 }
