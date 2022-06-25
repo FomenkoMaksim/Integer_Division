@@ -1,5 +1,9 @@
 package com.foxminded.fomenkomaksim.integer.division;
 
+import com.foxminded.fomenkomaksim.integer.division.formatter.Formatter;
+import com.foxminded.fomenkomaksim.integer.division.formatter.FormatterFactory;
+import com.foxminded.fomenkomaksim.integer.division.model.Result;
+
 public class IntegerDivisionApp {
     static final int DIVIDEND = 78945;
     static final int DIVISOR = 25;
@@ -7,8 +11,8 @@ public class IntegerDivisionApp {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Result result = calculator.divide(DIVIDEND, DIVISOR);
-        ResultFormatter rf = new ResultFormatter();
-
-        System.out.print(rf.format(result));
+        Formatter formatter = FormatterFactory.INSTANCE.get("classic");
+        String output = formatter.format(result);
+        System.out.print(output);
     }
 }
