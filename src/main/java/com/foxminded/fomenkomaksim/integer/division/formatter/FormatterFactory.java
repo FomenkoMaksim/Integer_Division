@@ -9,6 +9,8 @@ public enum FormatterFactory {
         switch (name.toLowerCase(Locale.ROOT)) {
             case "classic":
                 return new ClassicFormatter();
+            case "germany":
+                return new GermanyFormatter();
             default:
                 throw new IllegalArgumentException("Formatter of name " + name + " not implemented yet");
         }

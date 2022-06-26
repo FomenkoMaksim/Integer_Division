@@ -17,7 +17,9 @@ public class ClassicFormatter implements Formatter {
         formatter.format(" %-5s|" + "%s%n", result.getSteps().get(0).getSubtraction(), dashLine(length(result.getQuotient())));
         formatter.format(" %-5s|" + "%s%n", dashLine(length(result.getSteps().get(0).getSubtraction())), result.getQuotient());
         for (int i = 1; i < result.getSteps().size(); i++) {
-            formatter.format("%1$s_%2$-5s%n" + "%1$s %3$-5s%n" + "%1$s %4$-5s%n", spacer, result.getSteps().get(i).getMinuend(), result.getSteps().get(i).getSubtraction(), dashLine(length(result.getSteps().get(i).getSubtraction())));
+            formatter.format("%1$s_%2$-5s%n" + "%1$s %3$-5s%n" + "%1$s %4$-5s%n", spacer,
+                    result.getSteps().get(i).getMinuend(), result.getSteps().get(i).getSubtraction(),
+                    dashLine(length(result.getSteps().get(i).getSubtraction())));
             spacer.append(" ");
         }
         formatter.format("%s" + " %s%n", spacer, result.getReminder());
