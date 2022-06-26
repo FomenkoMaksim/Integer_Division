@@ -1,39 +1,25 @@
 package com.foxminded.fomenkomaksim.integer.division;
 
+import com.foxminded.fomenkomaksim.integer.division.model.Result;
+import com.foxminded.fomenkomaksim.integer.division.model.Step;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.foxminded.fomenkomaksim.integer.division.misc.MathUtils.toDigits;
+
 public class Calculator {
-    private int answer;
-    private int reminder;
-    List<Step> calcSteps = new ArrayList<>();
-
     public Result divide(int dividend, int divisor) {
-        String[] digits = Integer.toString(dividend).split("");
-        int tempDividend = Integer.parseInt(digits[0]);
-        int x = 0;
-        int y = 0;
-
-        while (x < digits.length - 1) {
-            for (int i = y; i <= digits.length - 1; i++) {
-                if (tempDividend / divisor == 0) {
-                    if (x + 1 >= digits.length) {
-                        break;
-                    }
-                    tempDividend = Integer.parseInt(tempDividend + "" + Integer.parseInt(digits[x + 1]));
-                    i--;
-                    x++;
-                } else {
-                    answer = Integer.parseInt(answer + "" + tempDividend / divisor);
-                    reminder = tempDividend % divisor;
-                    int subtraction = tempDividend - reminder;
-
-                    calcSteps.add(new Step(tempDividend, subtraction));
-                    tempDividend = reminder;
-                }
+        int minuend = 0;
+        List<Step> steps = new ArrayList<>();
+        for (int digit : toDigits(dividend)) {
+            minuend = minuend * 10 + digit;
+            if (minuend >= divisor) {
+                int subtrahend = minuend / divisor * divisor;
+                steps.add(new Step(minuend, subtrahend));
+                minuend = minuend - subtrahend;
             }
         }
-
-        return new Result(IntegerDivisionApp.DIVIDEND, IntegerDivisionApp.DIVISOR, reminder, answer, calcSteps);
+        return new Result(dividend, divisor, dividend / divisor, minuend, steps);
     }
 }
