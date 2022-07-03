@@ -26,6 +26,21 @@ public class Result {
         return divisor;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder listAsString = new StringBuilder();
+        for (Step step : steps) {
+           listAsString.append(step.getMinuend()).append(", ").append(step.getSubtraction());
+        }
+        return "Result{" +
+                "dividend=" + dividend +
+                ", divisor=" + divisor +
+                ", quotient=" + quotient +
+                ", reminder=" + reminder +
+                ", steps=" + listAsString +
+                '}';
+    }
+
     public int getQuotient() {
         return quotient;
     }
