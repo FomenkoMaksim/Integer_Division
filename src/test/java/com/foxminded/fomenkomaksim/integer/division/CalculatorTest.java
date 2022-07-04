@@ -31,8 +31,10 @@ class CalculatorTest {
                 new Step(76, 66),
                 new Step(107, 99)
         ));
+
         Result actual = calculator.divide(338467, 11);
-        assertEquals(expected.toString(), actual.toString());
+
+        assertEquals(expected, actual);
     }
 
     @Test
