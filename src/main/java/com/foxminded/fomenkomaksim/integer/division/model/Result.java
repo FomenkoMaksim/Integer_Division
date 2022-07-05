@@ -2,6 +2,7 @@ package com.foxminded.fomenkomaksim.integer.division.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Result {
     private final int dividend;
@@ -36,5 +37,18 @@ public class Result {
 
     public List<Step> getSteps() {
         return steps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return dividend == result.dividend && divisor == result.divisor && quotient == result.quotient && reminder == result.reminder && steps.equals(result.steps);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dividend, divisor, quotient, reminder, steps);
     }
 }

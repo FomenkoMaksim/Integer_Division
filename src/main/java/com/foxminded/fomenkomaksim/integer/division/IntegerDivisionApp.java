@@ -5,8 +5,8 @@ import com.foxminded.fomenkomaksim.integer.division.formatter.FormatterFactory;
 import com.foxminded.fomenkomaksim.integer.division.model.Result;
 
 public class IntegerDivisionApp {
-    static final int DIVIDEND = 657;
-    static final int DIVISOR = 4;
+    static final int DIVIDEND = 1234;
+    static final int DIVISOR = 123;
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
