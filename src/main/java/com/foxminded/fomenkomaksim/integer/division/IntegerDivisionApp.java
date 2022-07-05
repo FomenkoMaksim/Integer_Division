@@ -11,7 +11,7 @@ public class IntegerDivisionApp {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Result result = calculator.divide(DIVIDEND, DIVISOR);
-        Formatter formatter = FormatterFactory.INSTANCE.get("classic");
+        Formatter formatter = FormatterFactory.INSTANCE.get("germany");
         String output = formatter.format(result);
         System.out.print(output);
     }

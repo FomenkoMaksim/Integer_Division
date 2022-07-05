@@ -9,22 +9,23 @@ import static com.foxminded.fomenkomaksim.integer.division.misc.StringUtils.spac
 
 public class GermanyFormatter implements Formatter {
     private final StringBuilder sb = new StringBuilder();
-    private int offset = 0;
 
     @Override
     public String format(Result result) {
-        renderFirstPart(result);
+        int offset;
+        offset = renderFirstPart(result);
 
         for (int i = 1; i < result.getSteps().size(); i++) {
             Step current = result.getSteps().get(i);
-            renderSecondPart(current);
+            offset = renderSecondPart(current, offset);
         }
         renderFinalPart(result, result.getReminder());
 
         return sb.toString();
     }
 
-    private void renderFirstPart(Result result) {
+    private int renderFirstPart(Result result) {
+        int offset = 0;
         sb.append(result.getDividend()).append(" ÷ ").append(result.getDivisor())
                 .append(" => ").append(result.getQuotient()).append('\n');
         offset += length(result.getSteps().get(0).getMinuend()) - length(result.getSteps().get(0).getSubtraction());
@@ -36,9 +37,10 @@ public class GermanyFormatter implements Formatter {
         } else {
             offset += length(result.getSteps().get(0).getSubtraction()) - length(result.getSteps().get(0).getMinuend() - result.getSteps().get(0).getSubtraction());
         }
+        return offset;
     }
 
-    private void renderSecondPart(Step current) {
+    private int renderSecondPart(Step current, int offset) {
         int lengthMinuend = length(current.getMinuend());
         int lengthSubtraction = length(current.getSubtraction());
 
@@ -52,10 +54,11 @@ public class GermanyFormatter implements Formatter {
         } else {
             offset += length(current.getSubtraction()) - length(current.getMinuend() - current.getSubtraction());
         }
+        return offset;
     }
 
     private void renderFinalPart(Result result, int reminder) {
-        offset = length(result.getDividend()) - length(reminder);
+        int offset = length(result.getDividend()) - length(reminder);
         sb.append(spacer(offset)).append(reminder);
     }
 }

@@ -9,22 +9,23 @@ import static com.foxminded.fomenkomaksim.integer.division.misc.StringUtils.dash
 import static com.foxminded.fomenkomaksim.integer.division.misc.StringUtils.spacer;
 
 public class ClassicFormatter implements Formatter {
-    private int offset;
 
     @Override
     public String format(Result result) {
+        int offset;
         StringBuilder sb = new StringBuilder();
-        renderFirstPart(sb, result);
+        offset = renderFirstPart(sb, result);
 
         for (int i = 1; i < result.getSteps().size(); i++) {
             Step current = result.getSteps().get(i);
-            renderSecondPart(sb, current);
+            offset = renderSecondPart(sb, current, offset);
         }
         renderFinalPart(sb, result.getReminder(), result);
         return sb.toString();
     }
 
-    private void renderFirstPart(StringBuilder sb, Result result) {
+    private int renderFirstPart(StringBuilder sb, Result result) {
+        int offset = 0;
         int lengthDividend = length(result.getDividend());
         int lengthSubtraction = length(result.getSteps().get(0).getSubtraction());
         int lengthDiff = length(result.getSteps().get(0).getMinuend()) - length(result.getSteps().get(0).getSubtraction());
@@ -46,9 +47,10 @@ public class ClassicFormatter implements Formatter {
         } else {
             offset += length(result.getSteps().get(0).getSubtraction()) - length(result.getSteps().get(0).getMinuend() - result.getSteps().get(0).getSubtraction()) - 1;
         }
+        return offset;
     }
 
-    private void renderSecondPart(StringBuilder sb, Step current) {
+    private int renderSecondPart(StringBuilder sb, Step current, int offset) {
         sb.append(spacer(offset)).append("_").append(current.getMinuend()).append('\n');
         offset++;
 
@@ -64,10 +66,11 @@ public class ClassicFormatter implements Formatter {
         } else if (length(current.getMinuend() - current.getSubtraction()) == length(current.getSubtraction())) {
             offset--;
         }
+        return offset;
     }
 
     private void renderFinalPart(StringBuilder sb, int reminder, Result result) {
-        offset = 1 + length(result.getDividend()) - length(result.getReminder());
+        int offset = 1 + length(result.getDividend()) - length(result.getReminder());
         sb.append(spacer(offset)).append(reminder);
     }
 }
